@@ -1,0 +1,34 @@
+2026-07-01 03:38:34 | INFO     | app.evaluation.ground_truth:load_ground_truth:103 — Loaded 22 ground truth entries from nexacore_ground_truth.json
+2026-07-01 03:38:34 | INFO     | app.ingestion.loader:load_pdf:52 — Loading 'nexacore_annual_report_2024.pdf' — 3 pages (id=4c887a8f…)
+2026-07-01 03:38:34 | SUCCESS  | app.ingestion.loader:load_pdf:66 — Extracted 3 pages → nexacore_annual_report_2024_4c887a8f.json
+2026-07-01 03:38:34 | INFO     | app.ingestion.chunker:chunk_pages:92 — Chunking: 3 pages → 11 chunks (size=512, overlap=64)
+2026-07-01 03:38:34 | INFO     | app.ingestion.embedder:_get_model:39 — Loading embedding model: all-MiniLM-L6-v2
+2026-07-01 03:38:38 | SUCCESS  | app.ingestion.embedder:_get_model:41 — Embedding model ready.
+2026-07-01 03:38:38 | INFO     | app.ingestion.embedder:embed_chunks:52 — Embedding 11 chunks…
+2026-07-01 03:38:38 | SUCCESS  | app.ingestion.embedder:embed_chunks:60 — Embeddings done — shape (11, 384)
+2026-07-01 03:38:38 | SUCCESS  | app.ingestion.vector_store:build:60 — FAISS index built: 11 vectors, dim=384
+2026-07-01 03:39:09 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 528 chars
+2026-07-01 03:39:27 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 527 chars
+2026-07-01 03:39:47 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 574 chars
+2026-07-01 03:40:04 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 461 chars
+2026-07-01 03:40:14 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 251 chars
+2026-07-01 03:40:36 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 633 chars
+2026-07-01 03:40:50 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 370 chars
+2026-07-01 03:41:01 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 261 chars
+2026-07-01 03:41:38 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 1357 chars
+2026-07-01 03:42:01 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 640 chars
+2026-07-01 03:42:18 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 502 chars
+2026-07-01 03:42:18 | SUCCESS  | app.analytics.metrics_extractor:extract_metrics:160 — Extracted 41 financial metrics.
+2026-07-01 03:42:37 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 404 chars
+2026-07-01 03:42:47 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 246 chars
+2026-07-01 03:43:15 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 892 chars
+2026-07-01 03:43:32 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 486 chars
+2026-07-01 03:43:42 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 273 chars
+2026-07-01 03:43:58 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 400 chars
+2026-07-01 03:44:08 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 255 chars
+2026-07-01 03:44:20 | DEBUG    | app.generation.llm:call_llm:171 — LLM[ollama] response: 272 chars
+2026-07-01 03:44:20 | SUCCESS  | app.analytics.metrics_extractor:extract_comparison_figures:219 — Comparison pass: 19 additional figures found.
+2026-07-01 03:44:20 | INFO     | app.analytics.metrics_extractor:deduplicate_records:323 — Deduplication: 60 raw → 56 after value filter → 44 after group dedup
+2026-07-01 03:44:20 | INFO     | app.analytics.metrics_extractor:extract_metrics_full:351 — Full extraction: 41 (pass 1) + 19 (pass 2) → 60 after entity validation → 44 after dedup
+2026-07-01 03:44:20 | INFO     | app.evaluation.evaluator:evaluate:299 — Evaluation: 8 strict hits, 36 FP, 0 FN → F1 30.8%
+2026-07-01 03:44:20 | SUCCESS  | app.evaluation.eval_report:save_evaluation:84 — Evaluation saved → eval_20260701_034420.json

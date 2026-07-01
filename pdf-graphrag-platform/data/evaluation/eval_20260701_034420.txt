@@ -1,0 +1,67 @@
+PDF GraphRAG Platform — Extraction Accuracy Report
+Run: 20260701_034420
+
+╔══════════════════════════════════════════════════════════╗
+║          EXTRACTION ACCURACY EVALUATION REPORT          ║
+╠══════════════════════════════════════════════════════════╣
+  Ground truth entries  : 22
+  Extracted records     : 44
+
+  ── STRICT (value within 1% of truth) ──────────────────
+  Extraction accuracy   : 18.2%  (8/44 correct)
+  Precision             : 18.2%
+  Recall                : 100.0%
+  F1 score              : 30.8%  ← HEADLINE METRIC
+
+  ── LENIENT (value within 5% of truth) ──────────────────
+  Extraction accuracy   : 18.2%  (8/44 correct)
+  Precision             : 18.2%
+  Recall                : 100.0%
+  F1 score              : 30.8%
+
+  ── PER-RECORD BREAKDOWN ────────────────────────────────
+  [✓] NexaCore Technologies Inc revenue         extracted=4,850,000,000   truth=4,850,000,000   → CORRECT (strict)
+  [✓] NexaCore Technologies Inc revenue         extracted=4,250,000,000   truth=4,250,000,000   → CORRECT (strict)
+  [✓] NexaCore Technologies Inc operating_incom extracted=1,120,000,000   truth=1,120,000,000   → CORRECT (strict)
+  [✓] NexaCore Technologies Inc operating_incom extracted=920,000,000     truth=920,000,000     → CORRECT (strict)
+  [✗] Net income                net_income      extracted=8,470,000,000   truth=no GT           → NO MATCH
+  [✗] Net income                net_income      extracted=7,100,000,000   truth=no GT           → NO MATCH
+  [✗] Earnings per share (dilut earnings_per_sh extracted=68,400,000      truth=no GT           → NO MATCH
+  [✗] Earnings per share (dilut earnings_per_sh extracted=57,200,000      truth=no GT           → NO MATCH
+  [✗] NexaCore                  share (diluted) extracted=6,840,000       truth=847,000,000     → WRONG METRIC
+  [✗] NexaCore                  share (diluted) extracted=5,720,000       truth=710,000,000     → WRONG METRIC
+  [✗] NexaCore                  share (diluted) extracted=16,800,000      truth=2,310,000,000   → WRONG METRIC
+  [✗] Cloud Services segment    revenue         extracted=2,310,000,000   truth=no GT           → NO MATCH
+  [✗] Cloud Services segment    revenue         extracted=1,880,000,000   truth=no GT           → NO MATCH
+  [✗] Cloud Services            revenue         extracted=8,800,000,000   truth=1,880,000,000   → WRONG VALUE
+  [✓] Enterprise Software       revenue         extracted=1,740,000,000   truth=1,740,000,000   → CORRECT (strict)
+  [✓] Enterprise Software       revenue         extracted=1,710,000,000   truth=1,710,000,000   → CORRECT (strict)
+  [✓] Professional Services     revenue         extracted=800,000,000     truth=800,000,000     → CORRECT (strict)
+  [✗] Professional Services     revenue         extracted=800,000,000     truth=750,000,000     → WRONG VALUE
+  [✓] NEXACORE TECHNOLOGIES INC total_assets    extracted=18,400,000,000  truth=18,400,000,000  → CORRECT (strict)
+  [✗] NEXACORE TECHNOLOGIES INC total_assets    extracted=18,400,000,000  truth=3,620,000,000   → WRONG METRIC
+  [✗] NEXACORE TECHNOLOGIES INC cash            extracted=3,620,000,000   truth=4,200,000,000   → WRONG METRIC
+  [✗] NEXACORE TECHNOLOGIES INC cash            extracted=2,850,000,000   truth=680,000,000     → WRONG METRIC
+  [✗] NEXACORE TECHNOLOGIES INC long_term_debt  extracted=4,200,000,000   truth=590,000,000     → WRONG METRIC
+  [✗] NexaCore                  total_assets    extracted=9,500,000,000   truth=420,000,000     → WRONG METRIC
+  [✗] NexaCore                  research_and_de extracted=680,000,000     truth=340,000,000     → WRONG METRIC
+  [✗] NexaCore                  research_and_de extracted=590,000,000     truth=265,000,000     → WRONG METRIC
+  [✗] Cloud Services            capital_expendi extracted=420,000,000     truth=no GT           → NO MATCH
+  [✗] Cloud Services            capital_expendi extracted=370,000,000     truth=no GT           → NO MATCH
+  [✗] DataStream Analytics      revenue         extracted=1,850,000,000   truth=185,000,000     → WRONG VALUE
+  [✗] DataStream Analytics      revenue         extracted=1,500,000,000   truth=520,000,000     → WRONG METRIC
+  [✗] NexaCore Asia Pacific Pte acquisition_cos extracted=5,200,000,000   truth=no GT           → NO MATCH
+  [✗] NexaCore Asia Pacific Pte revenue         extracted=4,250,000,000   truth=no GT           → NO MATCH
+  [✗] NexaCore Asia Pacific Pte revenue         extracted=3,400,000,000   truth=no GT           → NO MATCH
+  [✗] NexaCore Asia Pacific Pte revenue         extracted=53,000,000,000  truth=no GT           → NO MATCH
+  [✗] Cloud Services            operating_incom extracted=1,250,000,000   truth=no GT           → NO MATCH
+  [✗] Cloud Services            free_cash_flow  extracted=1,100,000,000   truth=no GT           → NO MATCH
+  [✗] Infrastructure Investment capital_expendi extracted=500,000,000     truth=no GT           → NO MATCH
+  [✗] Earnings per share (dilut eps             extracted=67,240,000      truth=no GT           → NO MATCH
+  [✗] NexaCore                  revenue         extracted=2,310,000,000   truth=no GT           → NO MATCH
+  [✗] Professional Services     revenue         extracted=750,000,000     truth=no GT           → NO MATCH
+  [✗] NEXACORE TECHNOLOGIES INC long_term_debt  extracted=4,200,000,000   truth=no GT           → NO MATCH
+  [✗] R&D expenditure           revenue         extracted=590,000,000     truth=no GT           → NO MATCH
+  [✗] Capital expenditure       capital_expendi extracted=420,000,000     truth=no GT           → NO MATCH
+  [✗] NexaCore Asia Pacific Pte operating_incom extracted=34,000,000      truth=no GT           → NO MATCH
+╚══════════════════════════════════════════════════════════╝

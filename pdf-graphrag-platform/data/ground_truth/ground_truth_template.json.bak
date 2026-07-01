@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "description": "Ground truth for extraction accuracy evaluation",
+    "document_set": [
+      "your_document.pdf"
+    ],
+    "verified_by": "manual reading",
+    "date_verified": "YYYY-MM-DD",
+    "notes": "Fill in 10-20 entries for a reliable accuracy estimate."
+  },
+  "entries": [
+    {
+      "entity": "Company Name Here",
+      "metric": "revenue",
+      "true_value": 4200000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 12,
+      "source_sentence": "Revenue grew to $4.2 billion for fiscal 2024."
+    },
+    {
+      "entity": "Company Name Here",
+      "metric": "net_income",
+      "true_value": 850000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 14,
+      "source_sentence": "Net income was $850 million, up 8% year-over-year."
+    },
+    {
+      "entity": "Company Name Here",
+      "metric": "revenue",
+      "true_value": 3800000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 12,
+      "source_sentence": "Revenue grew to $4.2 billion from $3.8 billion in 2023."
+    }
+  ]
+}

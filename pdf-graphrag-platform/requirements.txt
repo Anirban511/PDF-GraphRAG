@@ -1,0 +1,45 @@
+# PDF Processing
+pypdf==4.3.1
+pdfplumber==0.11.4
+
+# Embeddings & Vector Store
+sentence-transformers==3.3.1
+faiss-cpu==1.9.0
+numpy==1.26.4
+
+# Hosted LLM providers (OPTIONAL — only if LLM_PROVIDER=openai/anthropic)
+# Uncomment the one you need:
+# openai==1.58.1
+# anthropic==0.42.0
+
+# Caching, queue, rate limiting
+redis==5.2.1
+
+# Knowledge Graph
+neo4j==5.27.0
+
+# Analytics & Reporting
+pandas==2.2.3
+matplotlib==3.9.3
+python-docx==1.1.2
+
+# API
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+python-multipart==0.0.20
+
+# Frontend
+streamlit==1.41.1
+streamlit-agraph==0.0.45
+
+# Utilities
+python-dotenv==1.0.1
+pydantic==2.10.4
+pydantic-settings==2.7.0
+loguru==0.7.3
+tqdm==4.67.1
+httpx==0.28.1
+
+# Testing
+pytest==8.3.4
+pytest-asyncio==0.25.0

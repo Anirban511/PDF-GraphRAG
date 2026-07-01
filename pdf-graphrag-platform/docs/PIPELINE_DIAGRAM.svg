@@ -1,0 +1,232 @@
+<svg width="100%" viewBox="0 0 680 1420" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>PDF RAG Assistant — Full Pipeline Flowchart</title>
+  <desc>Ingestion pipeline (left) and Query/Retrieval/Generation pipeline (right), sharing a central FAISS vector store</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; }
+      .label-sm { font-size: 11px; fill: #5F5E5A; }
+      .label-md { font-size: 13px; fill: #2C2C2A; }
+      .label-bold { font-size: 13px; fill: #2C2C2A; font-weight: 600; }
+      /* Teal nodes */
+      .node-teal rect { fill: #E1F5EE; stroke: #0F6E56; stroke-width: 0.8; }
+      .node-teal text { fill: #085041; }
+      /* Coral nodes */
+      .node-coral rect { fill: #FAECE7; stroke: #993C1D; stroke-width: 0.8; }
+      .node-coral text { fill: #4A1B0C; }
+      /* Pink nodes */
+      .node-pink rect { fill: #FBEAF0; stroke: #993556; stroke-width: 0.8; }
+      .node-pink text { fill: #4B1528; }
+      /* Purple nodes */
+      .node-purple rect { fill: #EEEDFE; stroke: #534AB7; stroke-width: 0.8; }
+      .node-purple text { fill: #26215C; }
+      /* Amber nodes */
+      .node-amber rect { fill: #FAEEDA; stroke: #854F0B; stroke-width: 0.8; }
+      .node-amber text { fill: #412402; }
+      /* Gray nodes */
+      .node-gray rect { fill: #F1EFE8; stroke: #5F5E5A; stroke-width: 0.8; }
+      .node-gray text { fill: #2C2C2A; }
+      /* Connectors */
+      .arr { stroke: #888780; stroke-width: 1; fill: none; }
+      .leader { stroke: #888780; stroke-width: 0.5; fill: none; stroke-dasharray: 3 3; }
+      .section-div { stroke: #D3D1C7; stroke-width: 0.5; stroke-dasharray: 4 4; }
+    </style>
+  </defs>
+
+  <!-- Section labels -->
+  <text class="label-sm" x="175" y="28" text-anchor="middle">INGESTION PIPELINE</text>
+  <text class="label-sm" x="505" y="28" text-anchor="middle">QUERY PIPELINE</text>
+  <line class="section-div" x1="340" y1="14" x2="340" y2="1380"/>
+
+  <!-- ═══ INGESTION (left) ═══ -->
+  <g class="node-teal">
+    <rect x="50" y="44" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="174" y="69" text-anchor="middle">PDF upload</text>
+    <text class="label-sm" x="174" y="87" text-anchor="middle">loader.py · UploadFile → tempfile</text>
+  </g>
+  <line class="arr" x1="174" y1="100" x2="174" y2="126" marker-end="url(#arrow)"/>
+
+  <g class="node-teal">
+    <rect x="50" y="126" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="174" y="151" text-anchor="middle">Text extraction</text>
+    <text class="label-sm" x="174" y="169" text-anchor="middle">pdf_utils.py · pdfplumber → pypdf fallback</text>
+  </g>
+  <line class="arr" x1="174" y1="182" x2="174" y2="208" marker-end="url(#arrow)"/>
+
+  <g class="node-gray">
+    <rect x="70" y="208" width="208" height="44" rx="8"/>
+    <text class="label-bold" x="174" y="226" text-anchor="middle">PageRecord list</text>
+    <text class="label-sm" x="174" y="242" text-anchor="middle">doc_id · page_num · text</text>
+  </g>
+  <line class="arr" x1="174" y1="252" x2="174" y2="278" marker-end="url(#arrow)"/>
+
+  <g class="node-teal">
+    <rect x="50" y="278" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="174" y="303" text-anchor="middle">Chunking</text>
+    <text class="label-sm" x="174" y="321" text-anchor="middle">chunker.py · sliding window + sentence snap</text>
+  </g>
+  <line class="arr" x1="174" y1="334" x2="174" y2="360" marker-end="url(#arrow)"/>
+
+  <g class="node-gray">
+    <rect x="70" y="360" width="208" height="44" rx="8"/>
+    <text class="label-bold" x="174" y="378" text-anchor="middle">Chunk list</text>
+    <text class="label-sm" x="174" y="394" text-anchor="middle">chunk_id · page_num · text</text>
+  </g>
+  <line class="arr" x1="174" y1="404" x2="174" y2="430" marker-end="url(#arrow)"/>
+
+  <g class="node-teal">
+    <rect x="50" y="430" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="174" y="455" text-anchor="middle">Embedding</text>
+    <text class="label-sm" x="174" y="473" text-anchor="middle">embedder.py · all-MiniLM-L6-v2</text>
+  </g>
+  <line class="arr" x1="174" y1="486" x2="174" y2="512" marker-end="url(#arrow)"/>
+
+  <g class="node-gray">
+    <rect x="70" y="512" width="208" height="44" rx="8"/>
+    <text class="label-bold" x="174" y="530" text-anchor="middle">Float32 vectors</text>
+    <text class="label-sm" x="174" y="546" text-anchor="middle">shape N×384, L2-normalised</text>
+  </g>
+  <line class="arr" x1="174" y1="556" x2="174" y2="582" marker-end="url(#arrow)"/>
+
+  <g class="node-teal">
+    <rect x="50" y="582" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="174" y="607" text-anchor="middle">Vector store build / add</text>
+    <text class="label-sm" x="174" y="625" text-anchor="middle">vector_store.py · FAISS IndexFlatIP</text>
+  </g>
+  <line class="arr" x1="174" y1="638" x2="174" y2="680" marker-end="url(#arrow)"/>
+
+  <!-- Side file output labels -->
+  <line class="leader" x1="298" y1="172" x2="352" y2="172"/>
+  <text class="label-sm" x="356" y="176" text-anchor="start">→ data/processed/*.json</text>
+
+  <!-- ═══ SHARED VECTOR DB ═══ -->
+  <g class="node-purple">
+    <rect x="140" y="680" width="400" height="60" rx="12"/>
+    <text class="label-bold" x="340" y="706" text-anchor="middle">Vector database  (FAISS + metadata)</text>
+    <text class="label-sm" x="340" y="726" text-anchor="middle">data/vector_db/index.faiss  ·  data/vector_db/metadata.json</text>
+  </g>
+
+  <!-- DB → right column arrow -->
+  <line class="arr" x1="506" y1="680" x2="506" y2="614" marker-end="url(#arrow)"/>
+
+  <!-- ═══ QUERY (right) ═══ -->
+  <g class="node-coral">
+    <rect x="382" y="44" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="506" y="69" text-anchor="middle">User query</text>
+    <text class="label-sm" x="506" y="87" text-anchor="middle">POST /api/v1/query · routes.py</text>
+  </g>
+  <line class="arr" x1="506" y1="100" x2="506" y2="126" marker-end="url(#arrow)"/>
+
+  <g class="node-amber">
+    <rect x="382" y="126" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="506" y="151" text-anchor="middle">Safety guardrail</text>
+    <text class="label-sm" x="506" y="169" text-anchor="middle">guardrails.py · Claude classifier</text>
+  </g>
+  <line class="arr" x1="506" y1="182" x2="506" y2="202" marker-end="url(#arrow)"/>
+
+  <!-- Decision diamond -->
+  <polygon points="506,202 546,226 506,250 466,226" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+  <text class="label-sm" x="506" y="230" text-anchor="middle">safe?</text>
+  <!-- No path -->
+  <text class="label-sm" x="558" y="222">no</text>
+  <line class="arr" x1="546" y1="226" x2="612" y2="226" marker-end="url(#arrow)"/>
+  <g class="node-gray"><rect x="614" y="208" width="52" height="36" rx="6"/><text class="label-sm" x="640" y="230" text-anchor="middle">reject</text></g>
+  <!-- Yes path -->
+  <text class="label-sm" x="472" y="264">yes</text>
+  <line class="arr" x1="506" y1="250" x2="506" y2="278" marker-end="url(#arrow)"/>
+
+  <g class="node-coral">
+    <rect x="382" y="278" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="506" y="303" text-anchor="middle">Query embedding</text>
+    <text class="label-sm" x="506" y="321" text-anchor="middle">embedder.embed_query() · same model</text>
+  </g>
+  <line class="arr" x1="506" y1="334" x2="506" y2="360" marker-end="url(#arrow)"/>
+
+  <g class="node-coral">
+    <rect x="382" y="360" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="506" y="385" text-anchor="middle">Similarity search</text>
+    <text class="label-sm" x="506" y="403" text-anchor="middle">vector_store.search() · inner product</text>
+  </g>
+
+  <!-- Dashed query line to vector DB -->
+  <path d="M506 360 L506 344 L340 344 L340 680" fill="none" stroke="#B4B2A9" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text class="label-sm" x="420" y="340" text-anchor="middle">queries index</text>
+
+  <line class="arr" x1="506" y1="416" x2="506" y2="442" marker-end="url(#arrow)"/>
+
+  <g class="node-gray">
+    <rect x="402" y="442" width="208" height="44" rx="8"/>
+    <text class="label-bold" x="506" y="460" text-anchor="middle">Top-K candidates</text>
+    <text class="label-sm" x="506" y="476" text-anchor="middle">TOP_K=5 chunk dicts + cosine score</text>
+  </g>
+  <line class="arr" x1="506" y1="486" x2="506" y2="512" marker-end="url(#arrow)"/>
+
+  <g class="node-coral">
+    <rect x="382" y="512" width="248" height="56" rx="8"/>
+    <text class="label-bold" x="506" y="537" text-anchor="middle">Cross-encoder reranking</text>
+    <text class="label-sm" x="506" y="555" text-anchor="middle">reranker.py · ms-marco-MiniLM-L-6</text>
+  </g>
+  <line class="arr" x1="506" y1="568" x2="506" y2="594" marker-end="url(#arrow)"/>
+
+  <g class="node-gray">
+    <rect x="402" y="594" width="208" height="44" rx="8"/>
+    <text class="label-bold" x="506" y="612" text-anchor="middle">Top-K reranked chunks</text>
+    <text class="label-sm" x="506" y="628" text-anchor="middle">RERANK_TOP_K=3 best chunks</text>
+  </g>
+  <line class="arr" x1="506" y1="638" x2="506" y2="680" marker-end="url(#arrow)"/>
+
+  <!-- ═══ GENERATION (bottom, full width) ═══ -->
+  <line class="arr" x1="340" y1="740" x2="340" y2="780" marker-end="url(#arrow)"/>
+
+  <g class="node-pink">
+    <rect x="140" y="780" width="400" height="56" rx="8"/>
+    <text class="label-bold" x="340" y="805" text-anchor="middle">Build LLM context + extract citations</text>
+    <text class="label-sm" x="340" y="823" text-anchor="middle">citation_builder.py · labelled chunk blocks</text>
+  </g>
+  <line class="arr" x1="340" y1="836" x2="340" y2="862" marker-end="url(#arrow)"/>
+
+  <g class="node-pink">
+    <rect x="140" y="862" width="400" height="56" rx="8"/>
+    <text class="label-bold" x="340" y="887" text-anchor="middle">LLM prompt assembly</text>
+    <text class="label-sm" x="340" y="905" text-anchor="middle">prompts.py · RAG_SYSTEM_PROMPT + RAG_USER_TEMPLATE</text>
+  </g>
+  <line class="arr" x1="340" y1="918" x2="340" y2="944" marker-end="url(#arrow)"/>
+
+  <g class="node-purple">
+    <rect x="140" y="944" width="400" height="60" rx="12"/>
+    <text class="label-bold" x="340" y="969" text-anchor="middle">Claude (Anthropic API)</text>
+    <text class="label-sm" x="340" y="989" text-anchor="middle">llm.py · call_llm() / stream_llm() · claude-opus-4-5</text>
+  </g>
+  <line class="arr" x1="340" y1="1004" x2="340" y2="1030" marker-end="url(#arrow)"/>
+
+  <g class="node-teal">
+    <rect x="140" y="1030" width="400" height="60" rx="12"/>
+    <text class="label-bold" x="340" y="1055" text-anchor="middle">Answer + citations</text>
+    <text class="label-sm" x="340" y="1075" text-anchor="middle">RAGResponse · answer · citations · latency_s · chunks_used</text>
+  </g>
+  <line class="arr" x1="340" y1="1090" x2="340" y2="1116" marker-end="url(#arrow)"/>
+
+  <g class="node-teal">
+    <rect x="140" y="1116" width="400" height="56" rx="8"/>
+    <text class="label-bold" x="340" y="1141" text-anchor="middle">API / Streamlit response</text>
+    <text class="label-sm" x="340" y="1159" text-anchor="middle">routes.py · QueryResponse JSON / StreamingResponse</text>
+  </g>
+
+  <!-- ═══ LEGEND ═══ -->
+  <text class="label-sm" x="340" y="1230" text-anchor="middle">LEGEND</text>
+  <rect x="44" y="1244" width="14" height="14" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+  <text class="label-sm" x="64" y="1256" text-anchor="start">Ingestion stages</text>
+  <rect x="182" y="1244" width="14" height="14" rx="3" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+  <text class="label-sm" x="202" y="1256" text-anchor="start">Query / retrieval stages</text>
+  <rect x="362" y="1244" width="14" height="14" rx="3" fill="#FBEAF0" stroke="#993556" stroke-width="0.8"/>
+  <text class="label-sm" x="382" y="1256" text-anchor="start">Generation stages</text>
+  <rect x="520" y="1244" width="14" height="14" rx="3" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+  <text class="label-sm" x="540" y="1256" text-anchor="start">Shared / LLM</text>
+  <rect x="44" y="1270" width="14" height="14" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+  <text class="label-sm" x="64" y="1282" text-anchor="start">Data objects (dataclasses)</text>
+  <rect x="254" y="1270" width="14" height="14" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+  <text class="label-sm" x="274" y="1282" text-anchor="start">Decision / safety check</text>
+</svg>

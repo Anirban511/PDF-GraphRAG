@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "description": "Ground truth for NexaCore Technologies Inc. Annual Report 2024",
+    "document_set": ["nexacore_annual_report_2024.pdf"],
+    "verified_by": "manual reading against source PDF",
+    "date_verified": "2025-01-01",
+    "notes": "All values normalised to plain floats. Sources verified against extracted text."
+  },
+  "entries": [
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "revenue",
+      "true_value": 4850000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 1,
+      "source_sentence": "Total revenue reached $4.85 billion, representing a 14.2% increase from $4.25 billion in fiscal year 2023."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "revenue",
+      "true_value": 4250000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 1,
+      "source_sentence": "Total revenue reached $4.85 billion, representing a 14.2% increase from $4.25 billion in fiscal year 2023."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "operating_income",
+      "true_value": 1120000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 1,
+      "source_sentence": "Operating income for fiscal 2024 was $1.12 billion, up from $920 million in the prior year."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "operating_income",
+      "true_value": 920000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 1,
+      "source_sentence": "Operating income for fiscal 2024 was $1.12 billion, up from $920 million in the prior year."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "net_income",
+      "true_value": 847000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 1,
+      "source_sentence": "Net income attributable to shareholders was $847 million, compared to $710 million in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "net_income",
+      "true_value": 710000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 1,
+      "source_sentence": "Net income attributable to shareholders was $847 million, compared to $710 million in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Cloud Services",
+      "metric": "revenue",
+      "true_value": 2310000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 1,
+      "source_sentence": "The Cloud Services segment generated revenue of $2.31 billion in fiscal 2024."
+    },
+    {
+      "entity": "NexaCore Cloud Services",
+      "metric": "revenue",
+      "true_value": 1880000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 1,
+      "source_sentence": "a 22.7% increase from $1.88 billion in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Enterprise Software",
+      "metric": "revenue",
+      "true_value": 1740000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 1,
+      "source_sentence": "Enterprise Software revenue was $1.74 billion, broadly flat compared to $1.71 billion in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Enterprise Software",
+      "metric": "revenue",
+      "true_value": 1710000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 1,
+      "source_sentence": "Enterprise Software revenue was $1.74 billion, broadly flat compared to $1.71 billion in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Professional Services",
+      "metric": "revenue",
+      "true_value": 800000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 1,
+      "source_sentence": "Professional Services contributed $800 million in revenue, up 6.7% from $750 million in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Professional Services",
+      "metric": "revenue",
+      "true_value": 750000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 1,
+      "source_sentence": "Professional Services contributed $800 million in revenue, up 6.7% from $750 million in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "total_assets",
+      "true_value": 18400000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 2,
+      "source_sentence": "Total assets at fiscal year-end were $18.4 billion, compared to $16.2 billion at December 31, 2023."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "cash",
+      "true_value": 3620000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 2,
+      "source_sentence": "Cash and cash equivalents were $3.62 billion, up from $2.85 billion at the prior year-end."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "long_term_debt",
+      "true_value": 4200000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 2,
+      "source_sentence": "Long-term debt outstanding was $4.2 billion, unchanged from the prior year."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "research_and_development",
+      "true_value": 680000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 2,
+      "source_sentence": "NexaCore invested $680 million in research and development in fiscal 2024."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "research_and_development",
+      "true_value": 590000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 2,
+      "source_sentence": "This compares to R&D expenditure of $590 million in fiscal 2023."
+    },
+    {
+      "entity": "NexaCore Technologies",
+      "metric": "capital_expenditure",
+      "true_value": 420000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 2,
+      "source_sentence": "Capital expenditure for fiscal 2024 totalled $420 million, up from $370 million in fiscal 2023."
+    },
+    {
+      "entity": "DataStream Analytics",
+      "metric": "revenue",
+      "true_value": 185000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 3,
+      "source_sentence": "DataStream Analytics contributed $185 million in revenue during fiscal 2024."
+    },
+    {
+      "entity": "DataStream Analytics",
+      "metric": "acquisition_cost",
+      "true_value": 520000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 3,
+      "source_sentence": "DataStream Analytics, acquired by NexaCore in March 2023 for $520 million."
+    },
+    {
+      "entity": "NexaCore Asia Pacific",
+      "metric": "revenue",
+      "true_value": 340000000,
+      "unit": "USD",
+      "period": "FY2024",
+      "source_page": 3,
+      "source_sentence": "NexaCore Asia Pacific Pte. Ltd. reported revenue of $340 million in fiscal 2024."
+    },
+    {
+      "entity": "NexaCore Asia Pacific",
+      "metric": "revenue",
+      "true_value": 265000000,
+      "unit": "USD",
+      "period": "FY2023",
+      "source_page": 3,
+      "source_sentence": "a 28.3% increase from $265 million in fiscal 2023."
+    }
+  ]
+}
