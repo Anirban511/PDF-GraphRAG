@@ -30,6 +30,9 @@ from dataclasses import dataclass, field
 from app.generation.llm import call_llm
 from app.ingestion.chunker import Chunk
 from app.utils.logger import logger
+import time
+import random
+from openai import RateLimitError
 
 # Entity types we care about for financial / business documents
 ENTITY_TYPES = ["ORG", "PERSON", "MONEY", "METRIC", "DATE", "PRODUCT", "LOCATION"]
@@ -87,12 +90,36 @@ def _normalise(name: str) -> str:
 def extract_from_chunk(chunk: Chunk) -> GraphFragment:
     """Run LLM extraction on one chunk. Returns a GraphFragment (may be empty)."""
     try:
-        raw = call_llm(
-            system=EXTRACTION_SYSTEM,
-            user=EXTRACTION_USER.format(text=chunk.text),
-            max_tokens=1024,
-            temperature=0.0,   # deterministic extraction
-        )
+        max_retries = 3
+
+        for attempt in range(max_retries + 1):
+            try:
+                raw = call_llm(
+                    system=EXTRACTION_SYSTEM,
+                    user=EXTRACTION_USER.format(text=chunk.text),
+                    max_tokens=512,
+                    temperature=0.0,   # deterministic extraction
+                )
+                break
+        
+            except RateLimitError as exc:
+                if attempt == max_retries:
+                    logger.error(
+                        f"Groq rate limit persisted after {max_retries} retries "
+                        f"on {chunk.chunk_id}: {exc}"
+                    )
+                    return GraphFragment()
+        
+                # Exponential backoff: ~2s, ~4s, ~8s
+                wait = min(2 ** (attempt + 1) + random.uniform(0, 1), 30)
+        
+                logger.warning(
+                    f"Groq 429 on {chunk.chunk_id}; "
+                    f"retrying in {wait:.1f}s "
+                    f"({attempt + 1}/{max_retries})"
+                )
+        
+                time.sleep(wait)
         # The model sometimes wraps JSON in ```; strip fences if present
         raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
         data = json.loads(raw)
