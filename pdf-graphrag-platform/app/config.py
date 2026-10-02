@@ -1,8 +1,11 @@
 """
 config.py — Central configuration loaded from .env
 
-No external API keys required. Uses Ollama for local LLM inference
-and Neo4j for the knowledge-graph layer.
+
+Central configuration for the PDF GraphRAG platform.
+
+Supports hosted LLM providers including Groq, OpenAI and Anthropic,
+as well as local Ollama inference.
 """
 
 from pathlib import Path
