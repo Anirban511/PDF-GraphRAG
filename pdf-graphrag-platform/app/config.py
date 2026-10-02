@@ -41,18 +41,29 @@ class Settings(BaseSettings):
     max_extraction_chunks: int = 0  # 0 = process all; set e.g. 150 to cap cost
 
     # Generation — LLM provider
-    # provider: "ollama" (local, free, default) | "openai" | "anthropic"
-    llm_provider: str = "ollama"
-    ollama_base_url: str = "http://localhost:11434"
-    llm_model: str = "llama3.2"
+    # provider: "ollama" | "openai" | "anthropic" | "groq"
+    llm_provider: str = "groq"
+    
+    # General generation settings
     max_tokens: int = 2048
     temperature: float = 0.2
-
-    # Hosted API keys (only needed if llm_provider is openai/anthropic)
+    
+    # Ollama
+    ollama_base_url: str = "http://localhost:11434"
+    llm_model: str = "llama3.2"
+    
+    # OpenAI
     openai_api_key: str = ""
     openai_model: str = "gpt-4o-mini"
+    
+    # Anthropic
     anthropic_api_key: str = ""
     anthropic_model: str = "claude-haiku-4-5-20251001"
+    
+    # Groq
+    groq_api_key: str = ""
+    groq_base_url: str = "https://api.groq.com/openai/v1"
+    groq_model: str = "openai/gpt-oss-120b"
 
     # Neo4j
     neo4j_uri: str = "bolt://localhost:7687"
