@@ -115,7 +115,60 @@ def _openai_stream(system: str, user: str):
         delta = chunk.choices[0].delta.content
         if delta:
             yield delta
+# ──────────────────────────────────────────────────────────────────────
+# GROQ (hosted, OpenAI-compatible)
+# ──────────────────────────────────────────────────────────────────────
 
+def _groq_client():
+    try:
+        from openai import OpenAI
+    except ImportError:
+        raise RuntimeError(
+            "openai package not installed. Run: pip install openai"
+        )
+
+    if not settings.groq_api_key:
+        raise RuntimeError(
+            "GROQ_API_KEY not set."
+        )
+
+    return OpenAI(
+        api_key=settings.groq_api_key,
+        base_url=settings.groq_base_url,
+    )
+
+
+def _groq_call(system: str, user: str) -> str:
+    resp = _groq_client().chat.completions.create(
+        model=settings.groq_model,
+        max_tokens=settings.max_tokens,
+        temperature=settings.temperature,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+    )
+
+    return resp.choices[0].message.content
+
+
+def _groq_stream(system: str, user: str):
+    stream = _groq_client().chat.completions.create(
+        model=settings.groq_model,
+        max_tokens=settings.max_tokens,
+        temperature=settings.temperature,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        stream=True,
+    )
+
+    for chunk in stream:
+        delta = chunk.choices[0].delta.content
+
+        if delta:
+            yield delta
 
 # ──────────────────────────────────────────────────────────────────────
 # ANTHROPIC (hosted)
@@ -156,10 +209,19 @@ def _anthropic_stream(system: str, user: str):
 # ──────────────────────────────────────────────────────────────────────
 # DISPATCH — the public interface the rest of the app uses
 # ──────────────────────────────────────────────────────────────────────
+_CALL = {
+    "ollama": _ollama_call,
+    "openai": _openai_call,
+    "anthropic": _anthropic_call,
+    "groq": _groq_call,
+}
 
-_CALL = {"ollama": _ollama_call, "openai": _openai_call, "anthropic": _anthropic_call}
-_STREAM = {"ollama": _ollama_stream, "openai": _openai_stream, "anthropic": _anthropic_stream}
-
+_STREAM = {
+    "ollama": _ollama_stream,
+    "openai": _openai_stream,
+    "anthropic": _anthropic_stream,
+    "groq": _groq_stream,
+}
 
 def call_llm(system: str, user: str, **_) -> str:
     """Blocking call routed to the configured provider."""
