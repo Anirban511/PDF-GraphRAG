@@ -7,12 +7,14 @@ WHY THIS EXISTS:
   by changing a single setting — LLM_PROVIDER — with no other code changes.
 
 PROVIDERS:
-  "ollama"    (default) — local, free, private. No API key. Runs Llama 3.2
-                          on your machine. Best for privacy; slower on CPU,
-                          weaker at high-volume structured extraction.
-  "openai"    — hosted. Fast, accurate, concurrent-friendly. Needs
-                OPENAI_API_KEY. Costs ~cents per document with gpt-4o-mini.
-  "anthropic" — hosted. Same benefits via Claude. Needs ANTHROPIC_API_KEY.
+  "groq"      — hosted Groq API using OpenAI-compatible interface.
+                Uses OpenAI GPT-OSS 120B by default.
+
+  "ollama"    — local Ollama inference.
+
+  "openai"    — hosted OpenAI API.
+
+  "anthropic" — hosted Anthropic API.
 
 DESIGN RATIONALE — local-first, API-optional:
   The project is built local-first for two design goals: zero running cost
