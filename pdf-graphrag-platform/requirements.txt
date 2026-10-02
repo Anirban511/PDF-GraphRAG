@@ -9,7 +9,7 @@ numpy==1.26.4
 
 # Hosted LLM providers (OPTIONAL — only if LLM_PROVIDER=openai/anthropic)
 # Uncomment the one you need:
-# openai==1.58.1
+openai>=1.58.1
 # anthropic==0.42.0
 
 # Caching, queue, rate limiting
