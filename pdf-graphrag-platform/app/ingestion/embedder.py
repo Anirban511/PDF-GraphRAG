@@ -29,6 +29,7 @@ from sentence_transformers import SentenceTransformer
 from app.config import settings
 from app.ingestion.chunker import Chunk
 from app.utils.logger import logger
+import torch
 
 _model: SentenceTransformer | None = None
 
@@ -37,7 +38,13 @@ def _get_model() -> SentenceTransformer:
     global _model
     if _model is None:
         logger.info(f"Loading embedding model: {settings.embedding_model}")
-        _model = SentenceTransformer(settings.embedding_model)
+        
+
+        _model = SentenceTransformer(
+            settings.embedding_model,
+            device="cuda" if torch.cuda.is_available() else "cpu"
+        )
+        print(f"Embedding model device: {_model.device}")
         logger.success("Embedding model ready.")
     return _model
 
